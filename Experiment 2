@@ -1,0 +1,43 @@
+#include <Servo.h>
+Servo myservo;  // create servo object to control a servo
+int pos = 0;    // variable to store the servo position
+int d,e,f,g,h,j=0; //Variables to store Sensor data
+int LED = 4;
+
+
+void setup() { 
+  myservo.attach(2);
+  pinMode(7,INPUT); //Digital Input Pin for IR sensor
+  pinMode(8,INPUT); //Digital Input Pin for IR sensor
+  pinMode(9,INPUT); //Digital Input Pin for IR sensor
+  pinMode(10,INPUT);//Digital Input Pin for IR sensor
+  pinMode(11,INPUT);//Digital Input Pin for IR sensor
+  pinMode(LED,OUTPUT);
+
+}
+
+                                                                                                                                                                                                             
+
+void loop() { 
+  
+  int d=digitalRead(7); //Read input from sensor D
+  int e=digitalRead(8); //Read input from sensor E
+  int f=digitalRead(9); //Read input from sensor F
+  int g=digitalRead(10);//Read input from sensor G
+  int h=digitalRead(11);//Read input from sensor H
+  if (d == 1 | e == 1 | f == 1| g == 1 | h == 1){
+    digitalWrite(LED, HIGH);
+    }
+    else{digitalWrite(LED,LOW);
+  if (d == 1 | e == 1 | f == 1| g == 1 | h == 1){
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15 ms for the servo to reach the position
+  }
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15 ms for the servo to reach the position
+  }
+  }
+}
